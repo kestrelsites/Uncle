@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f3e8d4" />
+  <meta name="description" content="Wszystkiego najlepszego, Wujku Olafie! Urodzinowe życzenia od całej rodziny." />
+  <title>OLAF FM — Wszystkiego najlepszego, Wujku Olafie!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f3e8d4;
+      --ink: #191714;
+      --red: #f04b2f;
+      --blue: #2347dc;
+      --yellow: #f2cb44;
+      --line: rgba(25, 23, 20, .24);
+      --mono: "DM Mono", "Courier New", monospace;
+      --display: "Space Grotesk", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--display);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      opacity: .14;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1220px, calc(100% - 48px)); margin: 0 auto; }
+    .mono { font: 500 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -.06em; }
+    .brand-mark { width: 29px; height: 29px; display: grid; place-items: center; background: var(--red); border: 1.5px solid var(--ink); border-radius: 50%; font-size: 16px; }
+    .brand-name { font-size: 16px; }
+    .top-right { display: flex; align-items: center; }
+    .top-note { font: 500 11px/1.4 var(--mono); letter-spacing: .08em; color: var(--ink); }
+    .hero { min-height: 680px; padding: 44px 0 58px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 22px; }
+    .eyebrow { display: block; margin-bottom: 24px; }
+    h1 { margin: 0; font-size: clamp(62px, 9.5vw, 132px); font-weight: 700; letter-spacing: -.095em; line-height: .79; text-transform: uppercase; }
+    h1 .line { display: block; white-space: nowrap; }
+    h1 .outline { color: transparent; -webkit-text-stroke: 1.6px var(--ink); }
+    h1 .red { color: var(--red); position: relative; display: inline-block; }
+    .hero-sub { max-width: 430px; margin: 29px 0 26px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; letter-spacing: -.03em; }
+    .hero-sub strong { font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; align-items: center; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 51px; padding: 0 18px; border: 1.5px solid var(--ink); text-decoration: none; text-transform: uppercase; letter-spacing: .07em; font: 500 11px var(--mono); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+    .button:hover { transform: translate(-3px,-3px); box-shadow: 4px 4px 0 var(--ink); }
+    .button.primary { background: var(--red); }
+    .button.secondary { background: transparent; }
+    .button .arrow { font-size: 18px; line-height: 0; }
+    .envelope-button {
+      display: inline-flex; flex-direction: column; align-items: flex-start; gap: 15px;
+      padding: 0; border: 0; background: transparent; color: var(--ink); cursor: pointer;
+      text-align: left; font: inherit; -webkit-tap-highlight-color: transparent;
+    }
+    .envelope-shape {
+      position: relative; display: block; width: 124px; height: 79px; overflow: hidden;
+      background: #fff6e5; border: 1.5px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
+      transform: rotate(-3deg); transform-origin: center; transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .envelope-shape::before {
+      content: ""; position: absolute; inset: 0; z-index: 1; background: var(--yellow);
+      clip-path: polygon(0 100%, 50% 43%, 100% 100%);
+    }
+    .envelope-shape::after {
+      content: ""; position: absolute; inset: 0; z-index: 2;
+      background: var(--red); clip-path: polygon(0 0, 100% 0, 50% 62%);
+      transform-origin: 50% 0; transition: transform .42s cubic-bezier(.2,.7,.2,1);
+    }
+    .envelope-heart {
+      position: absolute; z-index: 3; left: 50%; top: 48%; transform: translate(-50%,-50%);
+      font-size: 17px; color: var(--ink); transition: opacity .2s ease, transform .3s ease;
+    }
+    .envelope-instruction { display: inline-flex; align-items: center; gap: 12px; font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .envelope-button:hover .envelope-shape, .envelope-button:focus-visible .envelope-shape {
+      transform: translate(-3px,-3px) rotate(-1deg); box-shadow: 8px 8px 0 var(--ink);
+    }
+    .envelope-button:focus-visible { outline: 2px solid var(--blue); outline-offset: 7px; }
+    .envelope-button:active .envelope-shape { transform: translate(1px,1px) rotate(0); box-shadow: 3px 3px 0 var(--ink); }
+    .envelope-button.is-opening .envelope-shape { animation: envelope-lift .52s ease forwards; }
+    .envelope-button.is-opening .envelope-shape::after { transform: rotateX(180deg); }
+    .envelope-button.is-opening .envelope-heart { opacity: 0; transform: translate(-50%,-70%) scale(.7); }
+    body:not(.letter-open) .letter-section, body:not(.letter-open) .finale { display: none; }
+    #celebration-layer { position: fixed; inset: 0; z-index: 29; overflow: hidden; pointer-events: none; visibility: hidden; }
+    body.launching #celebration-layer { visibility: visible; }
+    .rocket-flight { position: fixed; left: 0; top: 0; width: 62px; height: 88px; overflow: visible; pointer-events: none; will-change: transform, opacity; animation: rocket-flight 2.15s cubic-bezier(.42,0,.6,1) forwards; }
+    .firework { position: fixed; width: 116px; height: 116px; left: var(--x); top: var(--y); pointer-events: none; opacity: 0;
+      background: repeating-conic-gradient(from -8deg, var(--red) 0deg 2.5deg, transparent 2.5deg 13deg, var(--yellow) 13deg 15.5deg, transparent 15.5deg 25deg, var(--blue) 25deg 27deg, transparent 27deg 38deg);
+      -webkit-mask-image: radial-gradient(circle, transparent 0 5%, #000 13% 35%, transparent 70%);
+      mask-image: radial-gradient(circle, transparent 0 5%, #000 13% 35%, transparent 70%);
+      transform: translate(-50%,-50%) scale(.08); animation: firework-pop .95s cubic-bezier(.12,.75,.25,1) forwards; will-change: transform, opacity;
+    }
+    .firework::after { content: ""; position: absolute; inset: 14%; border-radius: 50%; border: 1px solid var(--yellow); opacity: .7; }
+    .celebrating .record { animation-duration: 4s; }
+    @keyframes envelope-lift { 0% { transform: rotate(-3deg) translateY(0); } 45% { transform: rotate(3deg) translateY(-9px); } 100% { transform: rotate(0) translateY(-3px); } }
+    @keyframes rocket-flight {
+      0% { opacity: 0; transform: translate(-12vw, 108vh) rotate(28deg) scale(.5); }
+      9% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { opacity: 0; transform: translate(108vw, -18vh) rotate(28deg) scale(.94); }
+    }
+    @keyframes firework-pop { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.08) rotate(-12deg); } 18% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.8) rotate(15deg); } }
+    .artboard { min-height: 500px; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .sunburst { position: absolute; width: min(89%, 485px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); border: 1.5px solid var(--ink); z-index: -2; }
+    .sunburst::before, .sunburst::after { content: ""; position: absolute; border: 1px solid var(--ink); border-radius: 50%; inset: 8%; }
+    .sunburst::after { inset: 16%; border-style: dashed; opacity: .7; }
+    .record {
+      position: relative; width: min(75%, 382px); aspect-ratio: 1; border-radius: 50%;
+      background: repeating-radial-gradient(circle at center, #242321 0 2px, #34322f 2.5px 4px, #1c1b19 4.5px 7px);
+      border: 1.5px solid var(--ink); box-shadow: 13px 14px 0 rgba(25,23,20,.13);
+      display: grid; place-items: center; animation: spin 26s linear infinite;
+    }
+    .record::before { content: ""; position: absolute; inset: 17%; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); }
+    .record-label { width: 37%; aspect-ratio: 1; border-radius: 50%; background: var(--red); border: 1.5px solid var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
+    .record-label::after { content: ""; width: 7px; aspect-ratio: 1; border-radius: 50%; background: var(--paper); border: 1px solid var(--ink); position: absolute; }
+    .record-label .label-small { font: 500 clamp(7px, .8vw, 10px) var(--mono); letter-spacing: .1em; margin-bottom: 5px; }
+    .record-label .label-big { font-weight: 700; font-size: clamp(19px, 2.7vw, 33px); letter-spacing: -.1em; line-height: .8; }
+    .record-label .label-bottom { font: 500 7px var(--mono); letter-spacing: .1em; margin-top: 8px; }
+    .sticker { position: absolute; width: 111px; height: 111px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--blue); color: #fff8e9; display: grid; place-items: center; text-align: center; transform: rotate(12deg); top: 7%; right: 1%; box-shadow: 5px 5px 0 var(--ink); z-index: 2; }
+    .sticker span { font: 500 10px/1.55 var(--mono); letter-spacing: .08em; }
+    .sticker strong { font: 700 19px var(--display); letter-spacing: -.08em; }
+    .spark { position: absolute; color: var(--red); font-size: 43px; line-height: 1; }
+    .spark.one { top: 13%; left: 5%; transform: rotate(-17deg); }
+    .spark.two { bottom: 11%; right: 3%; color: var(--blue); font-size: 55px; transform: rotate(12deg); }
+    .caption-card { position: absolute; left: 0; bottom: 5%; padding: 13px 15px 12px; background: var(--paper); border: 1.5px solid var(--ink); transform: rotate(-5deg); box-shadow: 5px 5px 0 var(--ink); }
+    .caption-card b { display: block; font-size: 17px; text-transform: uppercase; letter-spacing: -.07em; }
+    .caption-card span { display: block; margin-top: 4px; }
+    .track-info { position: absolute; right: 1%; bottom: 1%; text-align: right; }
+    .track-info b { display: block; font-size: 11px; margin-top: 4px; }
+    .ticker { overflow: hidden; background: var(--blue); color: var(--paper); border-block: 1.5px solid var(--ink); transform: rotate(-1.2deg) scale(1.02); margin: 2px 0 0; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 27s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 25px; padding: 13px 13px; font: 500 12px var(--mono); letter-spacing: .11em; white-space: nowrap; }
+    .ticker-group .star { color: var(--yellow); font-size: 18px; }
+    .letter-section { padding: 100px 0 110px; }
+    .section-head { display: grid; grid-template-columns: .7fr 1.3fr; gap: 40px; align-items: start; border-top: 1px solid var(--line); padding-top: 20px; }
+    .section-tag { display: flex; align-items: center; gap: 9px; }
+    .section-tag i { display: block; width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
+    .section-title { font-size: clamp(37px, 6vw, 72px); line-height: .94; letter-spacing: -.075em; text-transform: uppercase; max-width: 760px; margin: 0; }
+    .letter-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 40px; margin-top: 46px; }
+    .margin-note { align-self: start; padding-top: 7px; }
+    .margin-note .big-star { font-size: 48px; display: block; color: var(--red); line-height: 1; margin-bottom: 16px; }
+    .margin-note p { max-width: 180px; font: 11px/1.7 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .letter { position: relative; background: #fff6e5; border: 1.5px solid var(--ink); padding: clamp(25px, 5vw, 57px); box-shadow: 9px 9px 0 var(--ink); transform: rotate(.35deg); }
+    .letter::before { content: "OD RODZINY ♥"; position: absolute; top: -13px; right: 19px; padding: 7px 10px; background: var(--yellow); border: 1px solid var(--ink); font: 500 9px var(--mono); letter-spacing: .1em; transform: rotate(3deg); }
+    .letter-kicker { color: var(--red); font: 500 10px var(--mono); text-transform: uppercase; letter-spacing: .13em; }
+    .letter h3 { font-size: clamp(27px, 3.7vw, 43px); line-height: 1; letter-spacing: -.07em; margin: 17px 0 20px; }
+    .letter p { font-size: clamp(16px, 1.8vw, 19px); line-height: 1.7; letter-spacing: -.025em; max-width: 680px; }
+    .letter .signoff { margin-top: 27px; padding-top: 21px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+    .signature { font-weight: 700; font-size: 25px; letter-spacing: -.08em; transform: rotate(-4deg); }
+    .stamp { width: 65px; aspect-ratio: 1; display: grid; place-items: center; border: 1.5px solid var(--red); color: var(--red); border-radius: 50%; font: 500 8px/1.4 var(--mono); text-align: center; transform: rotate(13deg); }
+    .finale { background: var(--red); color: var(--ink); border-top: 1.5px solid var(--ink); padding: 48px 0 28px; position: relative; overflow: hidden; }
+    .finale-top { display: flex; justify-content: space-between; align-items: start; gap: 20px; }
+    .finale-label { font: 500 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .finale h2 { font-size: clamp(43px, 10vw, 122px); line-height: .83; letter-spacing: -.1em; text-transform: uppercase; margin: 43px 0 34px; position: relative; z-index: 1; }
+    .finale h2 span { color: var(--paper); }
+    .finale-bottom { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(25,23,20,.4); padding-top: 17px; margin-top: 25px; }
+    .sound-bars { display: flex; align-items: center; gap: 4px; height: 34px; margin-top: 25px; }
+    .sound-bars i { display: block; width: 5px; height: 9px; background: var(--ink); transform-origin: center; }
+    .celebrating .sound-bars i { animation: equalize .7s ease-in-out infinite alternate; }
+    .celebrating .sound-bars i:nth-child(2n) { animation-delay: -.4s; }
+    .celebrating .sound-bars i:nth-child(3n) { animation-delay: -.2s; }
+    .celebrating .record { animation-duration: 5s; }
+    #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 25px); background: var(--ink); color: var(--paper); font: 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 14px 17px; z-index: 31; opacity: 0; transition: opacity .3s ease, transform .3s ease; pointer-events: none; max-width: calc(100% - 30px); text-align: center; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    @keyframes equalize { from { height: 5px; } to { height: 29px; } }
+    @media (max-width: 780px) {
+      .wrap { width: min(100% - 30px, 600px); }
+      .topbar { padding: 17px 0; }
+      .top-right { gap: 11px; }
+      .hero { min-height: auto; padding: 46px 0 54px; grid-template-columns: 1fr; gap: 3px; }
+      h1 { font-size: clamp(67px, 16vw, 118px); }
+      .hero-sub { margin-top: 24px; }
+      .artboard { min-height: 410px; margin-top: 8px; }
+      .sunburst { width: min(84%, 380px); }
+      .record { width: min(70%, 320px); }
+      .sticker { width: 91px; height: 91px; right: 3%; }
+      .caption-card { left: 2%; bottom: 2%; }
+      .track-info { right: 2%; bottom: -1%; }
+      .letter-section { padding: 70px 0 82px; }
+      .section-head, .letter-layout { grid-template-columns: 1fr; gap: 24px; }
+      .section-title { font-size: clamp(39px, 10vw, 64px); }
+      .letter-layout { margin-top: 34px; }
+      .margin-note { display: flex; align-items: center; gap: 14px; }
+      .margin-note .big-star { margin: 0; font-size: 34px; }
+      .margin-note p { max-width: none; margin: 0; }
+      .letter { margin-right: 6px; }
+      .finale h2 { font-size: clamp(50px, 13vw, 90px); }
+    }
+    @media (max-width: 420px) {
+      .mono { font-size: 9px; }
+      .brand-name { font-size: 14px; }
+      .hero-actions { align-items: flex-start; }
+      .envelope-shape { width: 114px; height: 73px; }
+      .envelope-instruction { font-size: 9px; }
+      .button { flex: 1; padding: 0 12px; gap: 8px; font-size: 10px; }
+      .artboard { min-height: 340px; }
+      .sticker { top: 2%; }
+      .spark.one { top: 10%; left: 0; }
+      .caption-card { bottom: 0; }
+      .track-info { bottom: 0; }
+      .finale-top, .finale-bottom { align-items: start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="celebration-layer" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="OLAF FM, początek strony" style="text-decoration:none">
+        <span class="brand-mark">✳</span><span class="brand-name">OLAF FM<span style="color:var(--red)">.</span></span>
+      </a>
+      <div class="top-right">
+        <span class="top-note">OD RODZINY ♥</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow mono">DLA WUJKA OLAFA</div>
+          <h1 id="hero-title"><span class="line">WSZYSTKIEGO</span><span class="line outline">NAJLEP-</span><span class="line"><span class="red">SZEGO,</span></span><span class="line">OLAFIE<span style="color:var(--blue)">!</span></span></h1>
+          <p class="hero-sub"><strong>Wujku Olafie, wszystkiego najlepszego!</strong><br />Dużo zdrowia, szczęścia i samych dobrych dni. I żeby zawsze znalazł się powód do śmiechu.</p>
+          <div class="hero-actions">
+            <button class="envelope-button" id="open-letter" type="button" aria-controls="zyczenia" aria-expanded="false">
+              <span class="envelope-shape" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-heart">♥</span></span>
+              <span class="envelope-instruction">Kliknij kopertę, aby otworzyć list <span class="arrow">↗</span></span>
+            </button>
+          </div>
+          <div class="sound-bars" aria-label="Urodzinowy equalizer" role="img"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="artboard" aria-label="Ilustracja płyty winylowej OLAF FM">
+          <div class="sunburst"></div>
+          <span class="spark one" aria-hidden="true">✳</span>
+          <span class="spark two" aria-hidden="true">✴</span>
+          <div class="record" aria-hidden="true">
+            <div class="record-label"><span class="label-small">DLA WUJKA</span><span class="label-big">OLAF</span><span class="label-bottom">URODZINY ♥</span></div>
+          </div>
+          <div class="sticker"><span>DLA CIEBIE<br /><strong>OLAFIE</strong><br />OD NAS ♥</span></div>
+          <div class="caption-card"><b>Wszystkiego dobrego!</b><span class="mono">OD CAŁEJ RODZINY ♥</span></div>
+          <div class="track-info mono">DZISIAJ DLA <b>★ WUJKA OLAFA ★</b></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="ticker" aria-label="Urodzinowy pasek"><div class="ticker-track">
+    <div class="ticker-group"><span>WSZYSTKIEGO DOBREGO</span><span class="star">✳</span><span>DUŻO ZDROWIA</span><span class="star">✳</span><span>SAMEGO DOBREGO</span><span class="star">✳</span><span>DUŻO ŚMIECHU</span><span class="star">✳</span><span>UŚCISKI OD NAS WSZYSTKICH</span><span class="star">✳</span></div>
+    <div class="ticker-group" aria-hidden="true"><span>WSZYSTKIEGO DOBREGO</span><span class="star">✳</span><span>DUŻO ZDROWIA</span><span class="star">✳</span><span>SAMEGO DOBREGO</span><span class="star">✳</span><span>DUŻO ŚMIECHU</span><span class="star">✳</span><span>UŚCISKI OD NAS WSZYSTKICH</span><span class="star">✳</span></div>
+  </div></div>
+
+  <section class="letter-section" id="zyczenia" aria-hidden="true">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-tag mono">KILKA SŁÓW OD NAS</div>
+        <h2 class="section-title">Ten kawałek<br />jest <span style="color:var(--red)">dla Ciebie</span>, Wujku.</h2>
+      </div>
+      <div class="letter-layout">
+        <aside class="margin-note"><span class="big-star">✳</span><p>PS. Kawałek tortu<br />też obowiązkowy.</p></aside>
+        <article class="letter">
+          <div class="letter-kicker">Dla Wujka Olafa, od nas wszystkich</div>
+          <h3>Wszystkiego najlepszego! 🎂</h3>
+          <p>Życzymy Ci dużo zdrowia, szczęścia i spokoju. Żeby wszystko układało się po Twojej myśli, żebyś miał czas na to, co lubisz, i żeby zawsze było z kim się pośmiać.</p>
+          <p>Mamy nadzieję, że dzisiaj trochę odpoczniesz, zjesz coś dobrego i spędzisz dzień tak, jak lubisz.</p>
+          <p>No i wiadomo, tortu nie może zabraknąć. Ściskamy Cię mocno i życzymy Ci wszystkiego, co najlepsze!</p>
+          <div class="signoff"><div><div class="mono">Uściski od nas wszystkich</div><div class="signature">Ściskamy mocno! ♥</div></div><div class="stamp">OD<br />CAŁEJ<br />RODZINY</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="finale">
+    <div class="wrap">
+      <div class="finale-top"><span class="finale-label">Z MIŁOŚCIĄ OD NAS</span><span class="finale-label">WSZYSTKIEGO DOBREGO!</span></div>
+      <h2>DZIŚ JEST<br /><span>TWÓJ DZIEŃ!</span></h2>
+      <button class="button secondary" id="final-celebrate"><span>Jeszcze raz!</span><span class="arrow">♥</span></button>
+      <div class="finale-bottom mono"><span>Ściskamy mocno!</span><span>OD CAŁEJ RODZINY ♥</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">UŚCISKI DLA WUJKA OLAFA! ♥</div>
+
+  <script>
+    (() => {
+      const layer = document.getElementById('celebration-layer');
+      const toast = document.getElementById('toast');
+      const openButton = document.getElementById('open-letter');
+      const instruction = openButton.querySelector('.envelope-instruction');
+      const letterSection = document.getElementById('zyczenia');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let opening = false;
+      let toastTimer = null;
+      let resetTimer = null;
+
+      function launchRocket() {
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const rocket = document.createElementNS(svgNS, 'svg');
+        rocket.setAttribute('viewBox', '0 0 64 88');
+        rocket.setAttribute('aria-hidden', 'true');
+        rocket.classList.add('rocket-flight');
+        rocket.innerHTML = `
+          <path d="M32 4 C43 14 47 27 44 45 L32 58 L20 45 C17 27 21 14 32 4Z" fill="#f04b2f" stroke="#191714" stroke-width="2"/>
+          <circle cx="32" cy="29" r="7" fill="#f2cb44" stroke="#191714" stroke-width="2"/>
+          <path d="M20 42 L8 55 L22 54 M44 42 L56 55 L42 54" fill="#2347dc" stroke="#191714" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M27 57 L32 76 L37 57Z" fill="#f2cb44" stroke="#191714" stroke-width="1.5"/>
+          <path d="M30 62 L32 85 L35 62Z" fill="#f04b2f"/>
+        `;
+        layer.appendChild(rocket);
+        window.setTimeout(() => rocket.remove(), reduceMotion ? 120 : 2400);
+      }
+
+      function firework(x, y, delay) {
+        const burst = document.createElement('span');
+        burst.className = 'firework';
+        burst.style.setProperty('--x', x + '%');
+        burst.style.setProperty('--y', y + '%');
+        burst.style.animationDelay = delay + 'ms';
+        layer.appendChild(burst);
+        window.setTimeout(() => burst.remove(), reduceMotion ? 120 : delay + 1100);
+      }
+
+      function playCelebration() {
+        document.body.classList.add('celebrating', 'launching');
+        launchRocket();
+        firework(30, 30, 540);
+        firework(69, 24, 920);
+        firework(52, 47, 1260);
+        toast.textContent = 'UŚCISKI DLA WUJKA OLAFA! ♥';
+        toast.classList.add('show');
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2200);
+        window.clearTimeout(resetTimer);
+        resetTimer = window.setTimeout(() => {
+          document.body.classList.remove('celebrating', 'launching');
+        }, reduceMotion ? 180 : 3300);
+      }
+
+      function openLetter() {
+        if (opening) return;
+        playCelebration();
+        if (document.body.classList.contains('letter-open')) return;
+        opening = true;
+        openButton.classList.add('is-opening');
+        openButton.setAttribute('aria-expanded', 'true');
+        const wait = reduceMotion ? 180 : 2250;
+        window.setTimeout(() => {
+          document.body.classList.add('letter-open');
+          letterSection.setAttribute('aria-hidden', 'false');
+          openButton.classList.remove('is-opening');
+          instruction.innerHTML = 'Gotowe. Wszystkiego najlepszego! <span class="arrow">♥</span>';
+          opening = false;
+          window.setTimeout(() => {
+            letterSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+          }, 100);
+        }, wait);
+      }
+
+      openButton.addEventListener('click', openLetter);
+      document.getElementById('final-celebrate').addEventListener('click', playCelebration);
+    })();
+  </script>
+</body>
+</html>
